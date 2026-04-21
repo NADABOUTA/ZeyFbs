@@ -1,243 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZayFBS — Huile d'Olive Extra Vierge</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ZayFBS - Huile d'olive extra vierge du Maroc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home'); return false;">
-    <div class="nav-logo-icon">🫒</div>
-    <div>
-      <span class="nav-logo-text">ZayFBS</span>
-      <span class="nav-logo-sub">Fquih Ben Saleh</span>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo"><h1>Zay<span>FBS</span></h1></div>
+    <ul class="nav-links">
+        <li><a href="#" data-page="accueil" class="active">Accueil</a></li>
+        <li><a href="#" data-page="produits">Nos Produits</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="cart-icon" id="cartIconBtn">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count" id="cartCount">0</span>
     </div>
-  </a>
-  <div class="nav-links">
-    <button class="nav-btn active" onclick="showPage('home', this)">Accueil</button>
-    <button class="nav-btn" onclick="showPage('products', this)">Nos Produits</button>
-    <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
-    <button class="cart-nav-btn" onclick="showPage('cart')">
-      🛒 Panier
-      <span class="cart-badge" id="cart-count">0</span>
-    </button>
-  </div>
 </nav>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<!-- ===== HOME PAGE ===== -->
-<div id="page-home" class="page active">
-
-  <section class="hero">
-    <div class="hero-label">✦ Depuis 1985 — Fquih Ben Saleh</div>
-    <h1>L'<em>Or Vert</em> de<br>Béni Mellal-Khénifra</h1>
-    <p>Huile d'olive extra vierge pressée à froid, issue des terres fertiles de la région de Fquih Ben Saleh. Pure, authentique, certifiée.</p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="showPage('products')">Découvrir nos produits</button>
-      <button class="btn-outline" onclick="document.querySelector('.farms-section').scrollIntoView()">Nos fermes</button>
+<!-- Panier latéral -->
+<div id="cartPanel" class="cart-overlay">
+    <div class="cart-header">
+        <h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
+        <button class="close-cart" id="closeCartBtn">&times;</button>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Fermes</div></div>
-      <div class="stat"><div class="stat-num">38 ans</div><div class="stat-label">D'expérience</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Naturel</div></div>
-      <div class="stat"><div class="stat-num">4 Cert.</div><div class="stat-label">Qualité</div></div>
-    </div>
-  </section>
-
-  <section class="section farms-section">
-    <div class="section-label">Nos fermes</div>
-    <h2 class="section-title">Un Terroir d'Exception</h2>
-    <p class="section-sub">Les oliveraies de Fquih Ben Saleh bénéficient d'un microclimat unique, d'un sol riche et d'un savoir-faire transmis de génération en génération.</p>
-    <div class="farms-grid">
-      <div class="farm-card">
-        <div class="farm-icon">🌿</div>
-        <h3>Ferme Al Baraka</h3>
-        <p>200 hectares d'oliviers de variété Picholine marocaine, cultivés en agriculture biologique depuis 1985.</p>
-      </div>
-      <div class="farm-card">
-        <div class="farm-icon">🏔️</div>
-        <h3>Ferme Ouled Fès</h3>
-        <p>Située sur les contreforts de l'Atlas, à 650m d'altitude. Oliviers centenaires, récolte entièrement manuelle.</p>
-      </div>
-      <div class="farm-card">
-        <div class="farm-icon">💧</div>
-        <h3>Ferme Oued Derna</h3>
-        <p>Irriguée naturellement par l'Oued Derna. Sol limoneux idéal pour la production d'une huile au goût délicat.</p>
-      </div>
-      <div class="farm-card">
-        <div class="farm-icon">☀️</div>
-        <h3>Ferme Jnane Zaytoun</h3>
-        <p>360 jours de soleil par an. Nos oliviers bénéficient des meilleures conditions pour produire une huile riche en polyphénols.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section certs-section">
-    <div class="section-label" style="color:var(--gold-light)">Certifications</div>
-    <h2 class="section-title">Qualité Garantie</h2>
-    <p class="section-sub">Toutes nos huiles sont rigoureusement contrôlées et certifiées par des organismes reconnus au Maroc et à l'international.</p>
-    <div class="cert-badges">
-      <div class="cert-badge"><span>🌱</span> Agriculture Biologique</div>
-      <div class="cert-badge"><span>🏆</span> ISO 9001 : 2015</div>
-      <div class="cert-badge"><span>🇲🇦</span> Label Maroc</div>
-      <div class="cert-badge"><span>📋</span> AOC — Appellation d'Origine</div>
-      <div class="cert-badge"><span>🌍</span> GLOBALG.A.P.</div>
-      <div class="cert-badge"><span>✅</span> HACCP Certifié</div>
-      <div class="cert-badge"><span>⭐</span> Extra Vierge — Acidité &lt; 0.3%</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Notre méthode</div>
-    <h2 class="section-title">Du Champ à la Bouteille</h2>
-    <p class="section-sub">Chaque étape est maîtrisée pour préserver les arômes naturels et les bienfaits de l'olive.</p>
-    <div class="process-steps">
-      <div class="step"><div class="step-num">1</div><h4>Récolte</h4><p>Cueillette à la main en octobre-novembre</p></div>
-      <div class="step"><div class="step-num">2</div><h4>Tri</h4><p>Sélection des olives à maturité optimale</p></div>
-      <div class="step"><div class="step-num">3</div><h4>Broyage</h4><p>Pressage à froid sous 27°C dans les 4h</p></div>
-      <div class="step"><div class="step-num">4</div><h4>Filtration</h4><p>Décantation naturelle sans traitement chimique</p></div>
-      <div class="step"><div class="step-num">5</div><h4>Mise en bouteille</h4><p>Conditionnement en verre teinté anti-UV</p></div>
-    </div>
-  </section>
-
+    <div id="cartItemsContainer" class="cart-items-list"></div>
+    <div id="cartTotal" class="cart-total">Total: 0,00 MAD</div>
 </div>
 
-<!-- ===== PRODUCTS PAGE ===== -->
-<div id="page-products" class="page">
-  <div class="products-header">
-    <div class="products-header-top">
-      <div>
-        <h2>Nos Produits</h2>
-        <p style="color:var(--muted);font-size:14px;margin-top:4px" id="product-count">Chargement...</p>
-      </div>
-      <button class="btn-add" onclick="openModal()">+ Ajouter un produit</button>
-    </div>
-  </div>
-  <div class="products-body">
-    <div class="products-grid" id="products-grid"></div>
-  </div>
-</div>
+<!-- Contenu principal dynamique -->
+<main id="mainContent" class="container"></main>
 
-<!-- ===== CART PAGE ===== -->
-<div id="page-cart" class="page">
-  <div class="cart-page">
-    <h2>🛒 Mon Panier</h2>
-    <div class="cart-items" id="cart-items"></div>
-    <div id="cart-summary"></div>
-  </div>
-</div>
-
-<!-- ===== CONTACT PAGE ===== -->
-<div id="page-contact" class="page">
-  <div class="contact-page">
-    <div class="contact-left">
-      <div class="section-label" style="color:var(--gold-light)">Contactez-nous</div>
-      <h2 class="section-title">Parlons de votre commande</h2>
-      <p class="section-sub">Notre équipe est disponible du lundi au samedi, de 8h à 18h.</p>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">📍</div>
-        <div>
-          <div class="contact-info-label">Adresse</div>
-          <div class="contact-info-val">Fquih Ben Saleh, Béni Mellal-Khénifra, Maroc</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">📞</div>
-        <div>
-          <div class="contact-info-label">Téléphone</div>
-          <div class="contact-info-val">+212 523 XX XX XX</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">✉️</div>
-        <div>
-          <div class="contact-info-label">Email</div>
-          <div class="contact-info-val">contact@zayfbs.ma</div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-right">
-      <h3>Envoyez-nous un message</h3>
-      <div class="contact-success" id="contact-success">✓ Votre message a été envoyé avec succès ! Nous vous répondrons dans les 24h.</div>
-      <label for="c-name">Votre nom</label>
-      <input type="text" id="c-name" placeholder="Ex : Mohamed Benali">
-      <label for="c-email">Email</label>
-      <input type="email" id="c-email" placeholder="votre@email.com">
-      <label for="c-msg">Message</label>
-      <textarea id="c-msg" placeholder="Comment pouvons-nous vous aider ?" style="min-height:120px"></textarea>
-      <button class="btn-save" onclick="sendContact()">Envoyer le message</button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-        <span style="font-size:22px">🫒</span>
-        <span style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white">ZayFBS</span>
-      </div>
-      <p>Producteur d'huile d'olive extra vierge depuis 1985, au cœur de la région de Fquih Ben Saleh, Béni Mellal-Khénifra.</p>
+    <div class="footer-info">
+        <span><i class="fas fa-map-marker-alt"></i> Fquih Ben Saleh, Béni Mellal-Khénifra, Maroc</span>
+        <span><i class="fas fa-envelope"></i> info@zayfbs.com</span>
+        <span><i class="fas fa-phone-alt"></i> +212 5 23 45 67 89</span>
     </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
-      <a href="#" onclick="showPage('home');return false">Accueil</a>
-      <a href="#" onclick="showPage('products');return false">Nos Produits</a>
-      <a href="#" onclick="showPage('cart');return false">Panier</a>
-      <a href="#" onclick="showPage('contact');return false">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>📍 Fquih Ben Saleh, Maroc</p>
-      <p>📞 +212 523 XX XX XX</p>
-      <p>✉️ contact@zayfbs.ma</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 ZayFBS — Tous droits réservés</span>
-    <span>Fait avec ♥ à Fquih Ben Saleh</span>
-  </div>
+    <p style="margin-top:1rem;">© 2025 ZayFBS - Fquih Ben Saleh - Huile d'olive authentique</p>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 class="modal-title" id="modal-title">Ajouter un produit</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div>
-      <label>Titre du produit *</label>
-      <input type="text" id="p-title" placeholder="Ex : Huile Extra Vierge 500ml">
-      <div class="form-row">
-        <div>
-          <label>Prix (MAD) *</label>
-          <input type="number" id="p-price" placeholder="85" min="1" style="margin-bottom:0">
-        </div>
-        <div>
-          <label>URL de l'image</label>
-          <input type="text" id="p-img" placeholder="https://..." style="margin-bottom:0">
-        </div>
-      </div>
-      <br>
-      <label>Description</label>
-      <textarea id="p-desc" placeholder="Décrivez votre produit..."></textarea>
-      <div class="modal-actions">
-        <button class="btn-save" onclick="saveProduct()" id="save-btn">Ajouter le produit</button>
-        <button class="btn-cancel" onclick="closeModal()">Annuler</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="app.js"></script>
+<script src="script.js">
+    
+</script>
 </body>
 </html>
