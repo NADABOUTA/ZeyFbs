@@ -9,13 +9,15 @@
 </head>
 <body>
 
-<!-- Navbar -->
+<!-- navbar -->
 <nav class="navbar">
-    <div class="logo"><h1>Zay<span>FBS</span></h1></div>
+    <div class="logo">
+        <h1>Zay<span>FBS</span></h1>
+    </div>
     <ul class="nav-links">
-        <li><a href="#" data-page="accueil" class="active">Accueil</a></li>
-        <li><a href="#" data-page="produits">Nos Produits</a></li>
-        <li><a href="#" data-page="contact">Contact</a></li>
+        <li><a class="nav-link active" data-page="accueil">Accueil</a></li>
+        <li><a class="nav-link" data-page="produits">Nos Produits</a></li>
+        <li><a class="nav-link" data-page="contact">Contact</a></li>
     </ul>
     <div class="cart-icon" id="cartIconBtn">
         <i class="fas fa-shopping-basket"></i>
@@ -23,7 +25,7 @@
     </div>
 </nav>
 
-<!-- Panier latéral -->
+<!-- Panier -->
 <div id="cartPanel" class="cart-overlay">
     <div class="cart-header">
         <h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
@@ -33,8 +35,93 @@
     <div id="cartTotal" class="cart-total">Total: 0,00 MAD</div>
 </div>
 
-<!-- Contenu principal dynamique -->
-<main id="mainContent" class="container"></main>
+<!-- PAGE ACCUEIL -->
+<div id="pageAccueil">
+    <div class="container">
+        <div class="hero">
+            <h2>L'huile d'olive extra vierge du cœur du Maroc</h2>
+            <p>Qualité exceptionnelle, saveur authentique et bienfaits naturels.</p>
+            <div class="hero-buttons">
+                <button class="btn" id="btnVoirProduits">Découvrir nos produits</button>
+                <button class="btn btn-outline" id="btnNosFermes">Nos Fermes</button>
+            </div>
+        </div>
+
+        <h3 class="section-title">— NOS PARTENAIRES & Fermes Locales</h3>
+        <div class="fermes-grid">
+            <div class="card-ferme">
+                <i class="fas fa-tractor"></i>
+                <strong>Ferme El Baraka</strong><br>50 ha d'oliveraies
+            </div>
+            <div class="card-ferme">
+                <i class="fas fa-leaf"></i>
+                <strong>Domaine Oued Zem</strong><br>Agriculture biologique
+            </div>
+            <div class="card-ferme">
+                <i class="fas fa-tree"></i>
+                <strong>Ferme Atlas Vert</strong><br>4 générations de savoir
+            </div>
+        </div>
+
+        <h3 class="section-title">— Du verger à la bouteille</h3>
+        <div class="process-steps">
+            <span class="step">🌿 Récolte</span>
+            <span class="step">🚚 Transport</span>
+            <span class="step">⚙️ Première pression</span>
+            <span class="step">🔬 Analyse</span>
+            <span class="step">🍾 Mise en bouteille</span>
+        </div>
+
+        <h3 class="section-title">— QUALITÉ GARANTIE</h3>
+        <div class="certifs">
+            <div class="card-ferme">
+                <i class="fas fa-seedling"></i>
+                <strong>Agriculture Biologique</strong><br>Certifié EcoCert
+            </div>
+            <div class="card-ferme">
+                <i class="fas fa-medal"></i>
+                <strong>Extra Vierge AOC</strong><br>Acidité inférieure à 0.8%
+            </div>
+            <div class="card-ferme">
+                <i class="fas fa-flask"></i>
+                <strong>Analyse Physicochimique</strong><br>Polyphénols contrôlés
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE PRODUITS-->
+<div id="pageProduits" class="hidden-page">
+    <div class="container">
+        <div id="produitsDynamicContent"></div>
+    </div>
+</div>
+
+<!-- PAGE CONTACT  -->
+<div id="pageContact" class="hidden-page">
+    <div class="container">
+        <h2 class="section-title">Contacter l'équipe ZayFBS</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Nom complet</label>
+                    <input type="text" id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="4" id="contactMsg" required></textarea>
+                </div>
+                <button type="submit" class="btn">Envoyer message</button>
+                <button type="reset" class="btn-outline btn">Réinitialiser</button>
+            </form>
+            <div id="formFeedback" style="margin-top:1rem; color:green;"></div>
+        </div>
+    </div>
+</div>
 
 <footer>
     <div class="footer-info">
@@ -42,11 +129,9 @@
         <span><i class="fas fa-envelope"></i> info@zayfbs.com</span>
         <span><i class="fas fa-phone-alt"></i> +212 5 23 45 67 89</span>
     </div>
-    <p style="margin-top:1rem;">© 2025 ZayFBS - Fquih Ben Saleh - Huile d'olive authentique</p>
+    <p style="margin-top:1rem;">© 2025 ZayFBS - Fquih Ben Saleh - Tous droits réservés</p>
 </footer>
 
-<script src="script.js">
-    
-</script>
+<script src="app.js"></script>
 </body>
 </html>
