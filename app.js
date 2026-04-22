@@ -166,6 +166,7 @@ function removeImage() {
     document.getElementById('imgPreviewWrap').style.display = 'none';
 }
 
+
 // ── NAVIGATION ──
 
 function showPage(name) {
