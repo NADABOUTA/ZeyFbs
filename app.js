@@ -1,8 +1,8 @@
 // ── DONNÉES ──
 let products = [
-    { id: "p1", image: "https://placehold.co/400x300/e8d5b5/5a3e1f?text=Huile+Prestige", title: "Huile d'Olive Prestige", description: "Extra vierge, première pression à froid.", price: 120 },
-    { id: "p2", image: "https://placehold.co/400x300/d9c8a7/4a6b3f?text=Domaine+Atlas",   title: "Domaine Atlas Vert",      description: "Bio certifié, goût fruité.",           price: 145 },
-    { id: "p3", image: "https://placehold.co/400x300/cbbd9a/3b5e2b?text=Ferme+El+Baraka", title: "Ferme El Baraka",         description: "Tradition familiale.",                price: 135 }
+    { id: "p1", image: "images/2.png", title: "Huile d'Olive Prestige", description: "Extra vierge, première pression à froid.", price: 120 },
+    { id: "p2", image: "images/1.png",   title: "Domaine Atlas Vert",      description: "Bio certifié, goût fruité.",           price: 145 },
+    { id: "p3", image: "images/3.png", title: "Ferme El Baraka",         description: "Tradition familiale.",                price: 135 }
 ];
 let cart = [];
 let editingId = null;
@@ -167,6 +167,70 @@ function removeImage() {
 }
 
 
+// ── PANIER ──
+
+function addToCart(id) {
+    const product  = products.find(p => p.id === id);
+    if (!product) return;
+    const existing = cart.find(i => i.id === id);
+    existing ? existing.quantity++ : cart.push({ ...product, quantity: 1 });
+    updateCartUI();
+    const icon = document.getElementById('cartIconBtn');
+    icon.style.transform = 'scale(1.2)';
+    setTimeout(() => icon.style.transform = '', 200);
+}
+
+function changeQuantity(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.quantity += delta;
+    if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+    updateCartUI();
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartUI();
+}
+
+function updateCartUI() {
+    document.getElementById('cartCount').innerText = cart.reduce((s, i) => s + i.quantity, 0);
+    const container = document.getElementById('cartItemsContainer');
+    const totalEl   = document.getElementById('cartTotal');
+
+    if (!cart.length) {
+        container.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
+        totalEl.innerHTML   = '<span>Total</span><strong>0,00 MAD</strong>';
+        return;
+    }
+
+    let total = 0;
+    container.innerHTML = '';
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <img class="cart-item-img" src="${item.image}" alt="${item.title}">
+            <div class="cart-item-details">
+                <div class="cart-item-title">${item.title}</div>
+                <div class="cart-item-price">${item.price} MAD</div>
+                <div class="cart-qty">
+                    <button class="qty-minus" onclick="changeQuantity('${item.id}',-1)">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="qty-plus"  onclick="changeQuantity('${item.id}',+1)">+</button>
+                </div>
+            </div>
+            <div class="cart-item-right">
+                <button class="cart-remove" onclick="removeFromCart('${item.id}')">X</button>
+                <div class="cart-item-total">${(item.price * item.quantity).toFixed(2)} MAD</div>
+            </div>`;
+        container.appendChild(div);
+    });
+    totalEl.innerHTML = `<span>Total</span><strong>${total.toFixed(2)} MAD</strong>`;
+}
+
+
 // ── NAVIGATION ──
 
 function showPage(name) {
@@ -196,9 +260,23 @@ function initCartPanel() {
 }
 
 
+// ── CONTACT ──
+
+function initContactForm() {
+    document.getElementById('contactForm')?.addEventListener('submit', e => {
+        e.preventDefault();
+        document.getElementById('formFeedback').innerHTML = 'Message envoye avec succes !';
+        e.target.reset();
+        setTimeout(() => document.getElementById('formFeedback').innerHTML = '', 3000);
+    });
+}
+
+
 // ── INIT ──
 function init() {
     initNavigation();
+    initCartPanel();
+    initContactForm();
     showPage('accueil');
     updateCartUI();
 }
