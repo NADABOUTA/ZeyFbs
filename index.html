@@ -1,135 +1,138 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZayFBS - Huile d'olive extra vierge du Maroc</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ZayFBS - Huile d'olive extra vierge du Maroc</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- navbar -->
+<!-- ── NAVBAR ── -->
 <nav class="navbar">
-    <div class="logo">
-        <h1>Zay<span>FBS</span></h1>
-    </div>
-    <ul class="nav-links">
-        <li><a class="nav-link active" data-page="accueil">Accueil</a></li>
-        <li><a class="nav-link" data-page="produits">Nos Produits</a></li>
-        <li><a class="nav-link" data-page="contact">Contact</a></li>
-    </ul>
-    <div class="cart-icon" id="cartIconBtn">
-        <i class="fas fa-shopping-basket"></i>
-        <span class="cart-count" id="cartCount">0</span>
-    </div>
+  <div class="logo">
+    <h1>Zay<span>FBS</span></h1>
+  </div>
+  <ul class="nav-links">
+    <li><a class="nav-link active" data-page="accueil">Accueil</a></li>
+    <li><a class="nav-link" data-page="produits">Nos Produits</a></li>
+    <li><a class="nav-link" data-page="contact">Contact</a></li>
+  </ul>
+  <div class="cart-icon" id="cartIconBtn">
+    <i class="fas fa-shopping-basket"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
 </nav>
 
-<!-- Panier -->
+<!-- ── PANIER (panneau latéral) ── -->
 <div id="cartPanel" class="cart-overlay">
-    <div class="cart-header">
-        <h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
-        <button class="close-cart" id="closeCartBtn">&times;</button>
-    </div>
-    <div id="cartItemsContainer" class="cart-items-list"></div>
-    <div id="cartTotal" class="cart-total"><span>Total</span><strong>0,00 MAD</strong></div>
-    <div class="cart-foot">
-        <button class="btn-save">Passer commande</button>
-    </div>
+  <div class="cart-header">
+    <h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
+    <button class="close-cart" id="closeCartBtn">&times;</button>
+  </div>
+  <div id="cartItemsContainer" class="cart-items-list"></div>
+  <div id="cartTotal" class="cart-total">
+    <span>Total</span><strong>0,00 MAD</strong>
+  </div>
+  <div class="cart-foot">
+    <button class="btn-save" id="btnCommander" onclick="placeOrder()">Passer commande</button>
+  </div>
 </div>
 
-<!-- PAGE ACCUEIL -->
+<!-- ── MODAL CONFIRMATION COMMANDE ── -->
+<div id="orderOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:12px;padding:2rem 1.5rem;text-align:center;max-width:320px;width:90%;margin:auto;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#e1f5ee;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+      <i class="fas fa-check" style="color:#0f6e56;font-size:22px;"></i>
+    </div>
+    <h3 style="font-size:18px;margin-bottom:.5rem;">Commande envoyée !</h3>
+    <p style="font-size:14px;color:#666;line-height:1.6;margin-bottom:1.2rem;">
+      Merci pour votre commande.<br>Notre équipe vous contactera bientôt.
+    </p>
+    <button onclick="closeOrderModal()" style="padding:10px 24px;background:#7d5a2e;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;">
+      Continuer
+    </button>
+  </div>
+</div>
+
+<!-- ── PAGE ACCUEIL ── -->
 <div id="pageAccueil">
-    <div class="container">
-        <div class="hero">
-            <h2>L'huile d'olive extra vierge du cœur du Maroc</h2>
-            <p>Qualité exceptionnelle, saveur authentique et bienfaits naturels.</p>
-            <div class="hero-buttons">
-                <button class="btn" id="btnVoirProduits">Découvrir nos produits</button>
-                <button class="btn btn-outline" id="btnNosFermes">Nos Fermes</button>
-            </div>
-        </div>
+  <div class="container">
 
-        <h3 class="section-title">NOS PARTENAIRES & Fermes Locales</h3>
-        <div class="fermes-grid">
-            <div class="card-ferme">
-                <i class="fas fa-tractor"></i>
-                <strong>Ferme El Baraka</strong>50 ha d'oliveraies
-            </div>
-            <div class="card-ferme">
-                <i class="fas fa-leaf"></i>
-                <strong>Domaine Oued Zem</strong>Agriculture biologique
-            </div>
-            <div class="card-ferme">
-                <i class="fas fa-tree"></i>
-                <strong>Ferme Atlas Vert</strong>4 générations de savoir
-            </div>
-        </div>
-
-        <h3 class="section-title">Du verger à la bouteille</h3>
-        <div class="process-steps">
-            <div class="step"><span>🌿</span><span>Récolte</span></div>
-            <div class="step"><span>🚚</span><span>Transport</span></div>
-            <div class="step"><span>⚙️</span><span>Première pression</span></div>
-            <div class="step"><span>🔬</span><span>Analyse</span></div>
-            <div class="step"><span>🍾</span><span>Mise en bouteille</span></div>
-        </div>
-
-        <h3 class="section-title">QUALITÉ GARANTIE</h3>
-        <div class="certifs">
-            <div class="card-ferme">
-                <i class="fas fa-seedling"></i>
-                <strong>Agriculture Biologique</strong>Certifié EcoCert
-            </div>
-            <div class="card-ferme">
-                <i class="fas fa-medal"></i>
-                <strong>Extra Vierge AOC</strong>Acidité inférieure à 0.8%
-            </div>
-            <div class="card-ferme">
-                <i class="fas fa-flask"></i>
-                <strong>Analyse Physicochimique</strong>Polyphénols contrôlés
-            </div>
-        </div>
+    <div class="hero">
+      <h2>L'huile d'olive extra vierge du cœur du Maroc</h2>
+      <p>Qualité exceptionnelle, saveur authentique et bienfaits naturels.</p>
+      <div class="hero-buttons">
+        <button class="btn" id="btnVoirProduits">Découvrir nos produits</button>
+        <button class="btn btn-outline" id="btnNosFermes">Nos Fermes</button>
+      </div>
     </div>
+
+    <h3 class="section-title">NOS PARTENAIRES & Fermes Locales</h3>
+    <div class="fermes-grid">
+      <div class="card-ferme"><i class="fas fa-tractor"></i><strong>Ferme El Baraka</strong>50 ha d'oliveraies</div>
+      <div class="card-ferme"><i class="fas fa-leaf"></i><strong>Domaine Oued Zem</strong>Agriculture biologique</div>
+      <div class="card-ferme"><i class="fas fa-tree"></i><strong>Ferme Atlas Vert</strong>4 générations de savoir</div>
+    </div>
+
+    <h3 class="section-title">Du verger à la bouteille</h3>
+    <div class="process-steps">
+      <div class="step"><span>🌿</span><span>Récolte</span></div>
+      <div class="step"><span>🚚</span><span>Transport</span></div>
+      <div class="step"><span>⚙️</span><span>Première pression</span></div>
+      <div class="step"><span>🔬</span><span>Analyse</span></div>
+      <div class="step"><span>🍾</span><span>Mise en bouteille</span></div>
+    </div>
+
+    <h3 class="section-title">QUALITÉ GARANTIE</h3>
+    <div class="certifs">
+      <div class="card-ferme"><i class="fas fa-seedling"></i><strong>Agriculture Biologique</strong>Certifié EcoCert</div>
+      <div class="card-ferme"><i class="fas fa-medal"></i><strong>Extra Vierge AOC</strong>Acidité inférieure à 0.8%</div>
+      <div class="card-ferme"><i class="fas fa-flask"></i><strong>Analyse Physicochimique</strong>Polyphénols contrôlés</div>
+    </div>
+
+  </div>
 </div>
 
-<!-- PAGE PRODUITS -->
+<!-- ── PAGE PRODUITS ── -->
 <div id="pageProduits" class="hidden-page">
-    <div class="container">
-        <div id="produitsDynamicContent"></div>
-    </div>
+  <div class="container">
+    <div id="produitsDynamicContent"></div>
+  </div>
 </div>
 
-<!-- PAGE CONTACT -->
+<!-- ── PAGE CONTACT ── -->
 <div id="pageContact" class="hidden-page">
-    <div class="container">
-        <h2 class="section-title">Contacter l'équipe ZayFBS</h2>
-        <div class="contact-form">
-            <form id="contactForm">
-                <label>Nom complet</label>
-                <input type="text" id="contactName" required placeholder="Votre nom">
-                <label>Email</label>
-                <input type="email" id="contactEmail" required placeholder="votre@email.com">
-                <label>Message</label>
-                <textarea rows="4" id="contactMsg" required placeholder="Votre message..."></textarea>
-                <div style="display:flex;gap:10px;margin-top:16px;">
-                    <button type="submit" class="btn">Envoyer message</button>
-                    <button type="reset" class="btn btn-cancel">Réinitialiser</button>
-                </div>
-            </form>
-            <div id="formFeedback" style="margin-top:1rem; color:green;"></div>
+  <div class="container">
+    <h2 class="section-title">Contacter l'équipe ZayFBS</h2>
+    <div class="contact-form">
+      <form id="contactForm">
+        <label>Nom complet</label>
+        <input type="text" id="contactName" required placeholder="Votre nom">
+        <label>Email</label>
+        <input type="email" id="contactEmail" required placeholder="votre@email.com">
+        <label>Message</label>
+        <textarea rows="4" id="contactMsg" required placeholder="Votre message..."></textarea>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <button type="submit" class="btn">Envoyer message</button>
+          <button type="reset" class="btn btn-cancel">Réinitialiser</button>
         </div>
+      </form>
+      <div id="formFeedback" style="margin-top:1rem;color:green;"></div>
     </div>
+  </div>
 </div>
 
+<!-- ── FOOTER ── -->
 <footer>
-    <div class="footer-info">
-        <span><i class="fas fa-map-marker-alt"></i> Fquih Ben Saleh, Béni Mellal-Khénifra, Maroc</span>
-        <span><i class="fas fa-envelope"></i> info@zayfbs.com</span>
-        <span><i class="fas fa-phone-alt"></i> +212 5 23 45 67 89</span>
-    </div>
-    <p>© 2025 ZayFBS - Fquih Ben Saleh - Tous droits réservés</p>
+  <div class="footer-info">
+    <span><i class="fas fa-map-marker-alt"></i> Fquih Ben Saleh, Béni Mellal-Khénifra, Maroc</span>
+    <span><i class="fas fa-envelope"></i> info@zayfbs.com</span>
+    <span><i class="fas fa-phone-alt"></i> +212 5 23 45 67 89</span>
+  </div>
+  <p>© 2025 ZayFBS - Fquih Ben Saleh - Tous droits réservés</p>
 </footer>
 
 <script src="app.js"></script>
